@@ -4,34 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 
-const Container = styled.div`
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  height: 100%;
-`;
-
-const ContentWrapper = styled.div`
-  display: flex;
-  overflow: hidden;
-  flex-wrap: wrap;
-  background-color: yellow;
-  align-content: space-between;
-  height: 100%;
-`;
-
-const ContentContainer = styled.div`
-  display: flex;
-  overflow: hidden;
-  flex-wrap: wrap;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100vw;
-  padding: 50px;
-`;
 
 
 interface SidebarProps {
@@ -63,3 +35,33 @@ const Layout: React.FC<SidebarProps> = ({ title,subtitle,children,toggleContentV
 };
 
 export default Layout;
+
+
+const Container = styled.div`
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  background-color: yellow;
+  align-content: space-between;
+  height: 100%;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  padding: 50px;
+`;

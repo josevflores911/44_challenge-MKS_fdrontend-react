@@ -3,6 +3,42 @@ import styled, { css } from "styled-components";
 import Button from "./Button";
 import BuyCard from "./BuyCard";
 
+
+
+const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar,onClickAlert, children }) => {
+  return (
+    <SidebarContainer $display={display}>
+      <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'100%',margin:'20px'}}>
+        
+        <div style={{ display: 'flex', justifyContent: 'space-between', }}>
+          <span>
+            Carrinho de compras
+          </span>
+{/* onClick={handleSidebar} */}
+          <Button type='close'  size={30}>X</Button>
+        </div>
+
+        <div>
+          {elements.map((element) => (
+          <BuyCard key={element.id} item={element}>{children}</BuyCard>     
+          ))}
+        </div>  
+
+        <div>Total:   {'sum of all items'}</div> 
+        
+      </div>
+      {/*onClick={onClickAlert*/}
+      <SideBarButton type="sidebar" >
+        Finalizar Compra
+      </SideBarButton>
+
+    </SidebarContainer>
+  );
+};
+
+export default Sidebar;
+
+
 const SidebarContainer = styled.div<{ $display?: boolean }>`
   transition: right 0.5s ease;
   
@@ -68,35 +104,3 @@ const elements = [{
   "price": "1000.00",
       
 }];
-
-const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar,onClickAlert, children }) => {
-  return (
-    <SidebarContainer $display={display}>
-      <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'100%',margin:'20px'}}>
-        
-        <div style={{ display: 'flex', justifyContent: 'space-between', }}>
-          <span>
-            Carrinho de compras
-          </span>
-          <Button type='close' onClick={handleSidebar} size={30}>X</Button>
-        </div>
-
-        <div>
-          {elements.map((element) => (
-          <BuyCard key={element.id} item={element}>{children}</BuyCard>     
-          ))}
-        </div>  
-
-        <div>Total:   {'sum of all items'}</div> 
-        
-      </div>
-      
-      <SideBarButton type="sidebar" onClick={onClickAlert}>
-        Finalizar Compra
-      </SideBarButton>
-
-    </SidebarContainer>
-  );
-};
-
-export default Sidebar;

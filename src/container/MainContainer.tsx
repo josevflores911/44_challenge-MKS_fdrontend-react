@@ -7,6 +7,10 @@ import Layout from "../styles/Layout";
 
 
 //todo
+
+//03-05: container styled, button add , funcionalidades(add to array and sum -util js-and pop with x)
+//reactquery, heroku o vercel o similar -> replantear con next(dashboard terminar)
+
 //container, cargar productos, aplicar axios, aplicar reactquery,por ultimo jest
 
 type ParentComponentProps = {
@@ -18,7 +22,10 @@ const MainContainer: React.FC<ParentComponentProps> = ({ children }) => {
   const subtitle = "Sistemas";
   const text = "MKS sistemas © Todos os direitos reservados";
 
+ 
+
   const [displayContent, setDisplayContent] = useState(true);
+
 
   const toggleContentVisibility = () => {
     setDisplayContent((prevDisplay) => !prevDisplay);

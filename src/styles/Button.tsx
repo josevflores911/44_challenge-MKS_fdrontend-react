@@ -1,12 +1,37 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { Product } from "../interfaces/Product";
 
-interface StyledButtonProps {
-  $type?: string;
-  $size?: number;
+
+interface ButtonProps {
+  
+  onButtonClick?: ((item?: any) => void)|undefined;
+  item?: Product;
+  children: React.ReactNode;
+  
+  type?: string;
+  size?: number;
 }
 
-const StyledButton = styled.button<StyledButtonProps>`
+const Button: React.FC<ButtonProps> = ({ onButtonClick, item, children, type, size }) => {
+  const handleClick = () => {
+    if (onButtonClick) {
+      // Call onButtonClick with the item when button is clicked
+      onButtonClick(item);
+    }
+  };
+  
+  return (
+    <StyledButton onClick={handleClick}  type={type} size={size}>
+      {children}
+    </StyledButton>
+  );
+};
+
+export default Button;
+
+
+const StyledButton = styled.button<ButtonProps>`
   padding: 10px 20px;
   font-size: 16px;
   background-color: #007bff;
@@ -17,8 +42,8 @@ const StyledButton = styled.button<StyledButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: ${(props) => (props.$size ? `${props.$size}px` : "auto")};
-  width: ${(props) => (props.$size ? `${props.$size}px` : "100%")};
+  height: ${(props) => (props.size ? `${props.size}px` : "auto")};
+  width: ${(props) => (props.size ? `${props.size}px` : "100%")};
   
 
   &:hover {
@@ -26,7 +51,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   ${(props) =>
-    props.$type === "header" &&
+    props.type === "header" &&
     css`
       border-radius: 8px;
       background-color: #ffffff;
@@ -37,7 +62,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
 
   ${(props) =>
-    props.$type === "card" &&
+    props.type === "card" &&
     css`
       font-family: Montserrat;
       font-size: 14px;
@@ -48,7 +73,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
 
   ${(props) =>
-    props.$type === "sidebar" &&
+    props.type === "sidebar" &&
     css`
       background-color: black;
       height: 97px;
@@ -64,7 +89,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     `}
 
   ${(props) =>
-    props.$type === "close" &&
+    props.type === "close" &&
     css`
       border-radius: 50%;
       background-color: black;
@@ -82,20 +107,3 @@ const StyledButton = styled.button<StyledButtonProps>`
       }
     `}
 `;
-
-interface ButtonProps {
-  type?: string;
-  size?: number;
-  onClick?: () => void;
-  children: React.ReactNode;
-}
-
-const Button: React.FC<ButtonProps> = ({ onClick, children, type, size }) => {
-  return (
-    <StyledButton onClick={onClick} $type={type} $size={size}>
-      {children}
-    </StyledButton>
-  );
-};
-
-export default Button;

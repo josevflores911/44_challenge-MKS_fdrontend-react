@@ -2,6 +2,42 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import { GiShoppingBag } from "react-icons/gi";
+import { Product } from '../interfaces/Product';
+
+interface CardProps {
+  item: Product;
+  size?: number;
+
+  onButtonClick?: (item: Product) => void;
+}
+
+const Card: React.FC<CardProps> = ({ item, onButtonClick ,size }) => {
+  return (
+    <CardContainer>
+      <CardContentWrapper>
+        <ImageWrapper>
+          <Image src={item.photo} alt={item.description} />
+        </ImageWrapper>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <CardTitle>{item.name}</CardTitle>
+          <CardContent>{formatCurrency(item.price)}</CardContent>
+        </div>
+        <div>
+        {item.brand}
+        </div>
+      </CardContentWrapper>
+
+      <ButtonContainer>
+        <Button type='card' onButtonClick={onButtonClick} item={item} ><GiShoppingBag/>  {`COMPRAR`}</Button>
+      </ButtonContainer>
+    </CardContainer>
+  );
+};
+
+export default Card;
+
+
+
 
 const CardContainer = styled.div`
   position: relative; 
@@ -27,9 +63,6 @@ justify-content:center;
 align-items:center;
 width: 64px;
 height: 26px;
-top: 173px;
-left: 142px;
-gap: 0px;
 border-radius: 5px;
 opacity: 0px;
 background-color: #373737;
@@ -40,7 +73,6 @@ line-height: 15px;
 text-align: left;
 color: #FFFFFF;
 
-  
 `;
 
 const CardContentWrapper = styled.div`
@@ -66,19 +98,6 @@ const ButtonContainer = styled.div`
   bottom: 0px; 
 `;
 
-interface CardProps {
-  item: {
-    id: number;
-    name: string;
-    brand: string;
-    description: string;
-    photo: string;
-    price: string;
-  };
-  size?: number;
-  onButtonClick: () => void;
-}
-
 function formatCurrency(amount: string): string {
   
   const value =parseInt(amount)
@@ -90,28 +109,3 @@ function formatCurrency(amount: string): string {
 
   return formattedAmount;
 }
-
-const Card: React.FC<CardProps> = ({ item, onButtonClick ,size }) => {
-  return (
-    <CardContainer>
-      <CardContentWrapper>
-        <ImageWrapper>
-          <Image src={item.photo} alt={item.description} />
-        </ImageWrapper>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <CardTitle>{item.name}</CardTitle>
-          <CardContent>{formatCurrency(item.price)}</CardContent>
-        </div>
-        <div>
-        {item.brand}
-        </div>
-      </CardContentWrapper>
-
-      <ButtonContainer>
-        <Button type='card' onClick={onButtonClick} ><GiShoppingBag/>  {`COMPRAR`}</Button>
-      </ButtonContainer>
-    </CardContainer>
-  );
-};
-
-export default Card;

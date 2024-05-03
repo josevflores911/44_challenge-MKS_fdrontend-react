@@ -46,8 +46,8 @@ const Header: React.FC<HeaderProps> = ( {title,subtitle,onButtonClick}) => {
                 <StyledTitle $primary>{subtitle}</StyledTitle>
             </div>
             <div style={{width:'150px'}}>
-
-                <Button onClick={onButtonClick} type='header'><RiShoppingCartFill/> {"0"}</Button>
+            {/* onClick={onButtonClick} */}
+                <Button  type='header'><RiShoppingCartFill/> {"0"}</Button>
             </div>
             
         </StyledHeader>
