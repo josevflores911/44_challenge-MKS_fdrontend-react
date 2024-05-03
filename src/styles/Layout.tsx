@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   overflow: hidden;
   flex-direction: column;
+  height: 100%;
 `;
 
 const ContentWrapper = styled.div`

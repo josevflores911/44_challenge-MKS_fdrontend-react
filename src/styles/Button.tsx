@@ -72,7 +72,7 @@ const StyledButton = styled.button<StyledButtonProps>`
       
       padding: 0;
       font-family: Montserrat;
-      font-size: 20px;
+     
       font-weight: 400;
       line-height: 15px;
       text-align: center;

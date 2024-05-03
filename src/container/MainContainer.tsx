@@ -31,19 +31,21 @@ const MainContainer: React.FC<ParentComponentProps> = ({ children }) => {
 
 
   return (
-    <>      
+    <div>
+
+    
       
       {displayContent?<SideBar />:<SideBar handleSidebar={toggleContentVisibility} onClickAlert={handleClick} display> ss</SideBar>}
       
       
-      <div className="parent-component" style={{ display: "flex", overflow: "hidden", width: displayContent?"100%" :"calc(100% - 486px)"}}>
+      <div className="parent-component" style={{ display: "flex", overflow: "hidden",height:displayContent?"100vh" :"auto" ,transition: 'width 0.5s ease',width: displayContent?"100%" :"calc(100% - 486px)"}}>
    
         <Layout toggleContentVisibility={toggleContentVisibility} title={title} subtitle={subtitle} text={text}>
           {children}
         </Layout>
 
       </div>
-    </>
+      </div>     
   );
 };
 
