@@ -4,6 +4,35 @@ import '../index.css'
 import Button from './Button';
 import { RiShoppingCartFill } from "react-icons/ri";
 
+
+
+
+interface HeaderProps {
+    title?: string;
+    subtitle?: string;
+    quantity?: number;
+    onButtonClick?: () => void;
+  }
+
+const Header: React.FC<HeaderProps> = ( {title,subtitle,onButtonClick,quantity}) => {
+    return (
+        <StyledHeader>
+            <div style={{display:'flex',alignItems:'flex-end'}}>
+                <StyledTitle>{title}</StyledTitle>
+                <StyledTitle $primary>{subtitle}</StyledTitle>
+            </div>
+            <div style={{width:'150px'}}>
+
+                <Button onButtonClick={onButtonClick} type='header'><RiShoppingCartFill/> {quantity}</Button>
+            </div>
+            
+        </StyledHeader>
+    );
+};
+
+export default Header;
+
+
 const StyledHeader = styled.div`
     display:flex;
     justify-content:space-between;
@@ -29,29 +58,3 @@ const StyledTitle = styled.div<{ $primary?: boolean; }>`
         margin-left:5px;
   `}
 `;
-
-
-
-interface HeaderProps {
-    title?: string;
-    subtitle?: string;
-    onButtonClick?: () => void;
-  }
-
-const Header: React.FC<HeaderProps> = ( {title,subtitle,onButtonClick}) => {
-    return (
-        <StyledHeader>
-            <div style={{display:'flex',alignItems:'flex-end'}}>
-                <StyledTitle>{title}</StyledTitle>
-                <StyledTitle $primary>{subtitle}</StyledTitle>
-            </div>
-            <div style={{width:'150px'}}>
-            {/* onClick={onButtonClick} */}
-                <Button  type='header'><RiShoppingCartFill/> {"0"}</Button>
-            </div>
-            
-        </StyledHeader>
-    );
-};
-
-export default Header;

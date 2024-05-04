@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import { GiShoppingBag } from "react-icons/gi";
 import { Product } from '../interfaces/Product';
+import { formatCurrency } from '../utils/utils';
 
 interface CardProps {
   item: Product;
@@ -11,7 +12,7 @@ interface CardProps {
   onButtonClick?: (item: Product) => void;
 }
 
-const Card: React.FC<CardProps> = ({ item, onButtonClick ,size }) => {
+const Card: React.FC<CardProps> = ({ item, onButtonClick }) => {
   return (
     <CardContainer>
       <CardContentWrapper>
@@ -98,14 +99,3 @@ const ButtonContainer = styled.div`
   bottom: 0px; 
 `;
 
-function formatCurrency(amount: string): string {
-  
-  const value =parseInt(amount)
-  const formattedAmount = value.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 0
-  });
-
-  return formattedAmount;
-}

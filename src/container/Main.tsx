@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import MainContainer from './MainContainer';
-import Button from '../styles/Button';
 import Card from '../styles/Card';
-import { PRODUCTS } from '../data/products';
-import axios, { AxiosResponse } from "axios";
 import { Product } from '../interfaces/Product';
 
+import axios, { AxiosResponse } from "axios";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../scripts/store';
+import {addItem} from '../scripts/buySlice'
 
+const API_URL = "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products";
 
 
 const Main = () => {
-
-  const handleClick = (item: Product) => {
-    
-    const isSelected = selectedItems.some((selectedItem) => selectedItem.id === item.id);
-
-    if (!isSelected) {
-      
-      setSelectedItems([...selectedItems, item]);
-      console.log(selectedItems);
-    }
-  };
-
-
   const [products, setProducts] = useState<Product[]>([]);
-  const API_URL = "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products";
-  const [selectedItems, setSelectedItems] = useState<Product[]>([]);
+
+  const elementsSelected = useSelector((state: RootState) => state.product.values)
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item: Product) => {
+    dispatch(addItem(item))
+    console.log(elementsSelected)
+  };  
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,9 +48,9 @@ const Main = () => {
 
 
   return (
-    <MainContainer>
+    <MainContainer elementsSelected={elementsSelected}>
       {products.map((item) => (
-          <Card key={item.id} item={item} onButtonClick={handleClick} />
+          <Card key={item.id} item={item} onButtonClick={handleAddItem} />
       ))}
     </MainContainer>
   );

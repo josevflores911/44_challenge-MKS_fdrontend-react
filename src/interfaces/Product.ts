@@ -7,4 +7,9 @@ export interface Product {
     price: string;
     createdAt: string;
     updatedAt: string;
-  }
+}
+  
+export const ActionTypes = {
+  ADD_ITEM: 'ADD_ITEM',
+  REMOVE_ITEM: 'REMOVE_ITEM',
+};

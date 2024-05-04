@@ -1,42 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Button from "./Button";
 import BuyCard from "./BuyCard";
+import Font from "./Font";
+import { Product } from "../interfaces/Product";
+import { removeItem } from "../scripts/buySlice";
+import { useDispatch } from "react-redux";
+
+interface SidebarProps {
+  elementsSelected:Product[]
+  display?: boolean;
+  handleSidebar?: () => void;
+  children?: React.ReactNode;
+}
 
 
+const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar, children,elementsSelected }) => {
 
-const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar,onClickAlert, children }) => {
+  const dispatch = useDispatch();
+
+  const removeElement = (item: Product) => {
+    dispatch(removeItem(item))
+    console.log(elementsSelected)
+    
+  };
+
+
   return (
+
     <SidebarContainer $display={display}>
-      <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'100%',margin:'20px'}}>
-        
-        <div style={{ display: 'flex', justifyContent: 'space-between', }}>
-          <span>
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', margin: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Font width={'180'}>
             Carrinho de compras
-          </span>
-{/* onClick={handleSidebar} */}
-          <Button type='close'  size={30}>X</Button>
+          </Font>
+          <Button onButtonClick={handleSidebar} type='close' size={30}>X</Button>
         </div>
 
         <div>
-          {elements.map((element) => (
-          <BuyCard key={element.id} item={element}>{children}</BuyCard>     
+          {elementsSelected && elementsSelected.map((element) => (
+            <BuyCard key={element.id} item={element} onButtonClick={removeElement}>
+              {children}
+            </BuyCard>
           ))}
-        </div>  
+        </div>
 
-        <div>Total:   {'sum of all items'}</div> 
-        
+        <Font>
+          Total: {'sum of all items'}
+        </Font>
       </div>
-      {/*onClick={onClickAlert*/}
-      <SideBarButton type="sidebar" >
-        Finalizar Compra
-      </SideBarButton>
 
+      <Font>
+        <Button type="sidebar">
+          Finalizar Compra
+        </Button>
+      </Font>
     </SidebarContainer>
   );
 };
 
 export default Sidebar;
+
 
 
 const SidebarContainer = styled.div<{ $display?: boolean }>`
@@ -66,26 +90,8 @@ const SidebarContainer = styled.div<{ $display?: boolean }>`
     `}
 `;
 
-const SideBarButton = styled(Button)`
-  font-family: Montserrat;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 15px;
-  text-align: left;
 
-  width: 100%;
-`;
 
-interface SidebarProps {
-  display?: boolean;
-  handleSidebar?: () => void;
-  onClickAlert?:() => void;
-  children?: React.ReactNode;
-}
-
-const handleClick = () => {
-  alert('remove element')
-}
 
 const elements = [{
   "id": 5,

@@ -4,6 +4,7 @@ import { PRODUCTS } from "../data/products";
 
 import SideBar from "../styles/Sidebar";
 import Layout from "../styles/Layout";
+import { Product } from "../interfaces/Product";
 
 
 //todo
@@ -15,14 +16,15 @@ import Layout from "../styles/Layout";
 
 type ParentComponentProps = {
   children: ReactNode;
+  elementsSelected:Product[]
 };
 
-const MainContainer: React.FC<ParentComponentProps> = ({ children }) => {
-  const title = "MKS";
-  const subtitle = "Sistemas";
-  const text = "MKS sistemas © Todos os direitos reservados";
+const title = "MKS";
+const subtitle = "Sistemas";
+const text = "MKS sistemas © Todos os direitos reservados";
 
- 
+
+const MainContainer: React.FC<ParentComponentProps> = ({ children,elementsSelected }) => {
 
   const [displayContent, setDisplayContent] = useState(true);
 
@@ -39,15 +41,12 @@ const MainContainer: React.FC<ParentComponentProps> = ({ children }) => {
 
   return (
     <div>
-
-    
       
-      {displayContent?<SideBar />:<SideBar handleSidebar={toggleContentVisibility} onClickAlert={handleClick} display> ss</SideBar>}
-      
-      
+      {displayContent?<SideBar elementsSelected={elementsSelected} handleSidebar={toggleContentVisibility}/>:<SideBar elementsSelected={elementsSelected} handleSidebar={toggleContentVisibility} display/> }
+            
       <div className="parent-component" style={{ display: "flex", overflow: "hidden",height:displayContent?"100vh" :"auto" ,transition: 'width 0.5s ease',width: displayContent?"100%" :"calc(100% - 486px)"}}>
    
-        <Layout toggleContentVisibility={toggleContentVisibility} title={title} subtitle={subtitle} text={text}>
+        <Layout elementsSelected={elementsSelected} toggleContentVisibility={toggleContentVisibility} title={title} subtitle={subtitle} text={text}>
           {children}
         </Layout>
 

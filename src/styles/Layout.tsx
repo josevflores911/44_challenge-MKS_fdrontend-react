@@ -2,26 +2,30 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Product } from "../interfaces/Product";
 
 
 
 
-interface SidebarProps {
+interface LayoutProps {
+ 
     title?: string;
     subtitle?: string;
     text: string;
     toggleContentVisibility: () => void;
-    children?: React.ReactNode;
+  children?: React.ReactNode;
+  elementsSelected:Product[]
   }
 
 
-const Layout: React.FC<SidebarProps> = ({ title,subtitle,children,toggleContentVisibility,text}) => {
+const Layout: React.FC<LayoutProps> = ({ title,subtitle,children,toggleContentVisibility,text,elementsSelected}) => {
 
   return (
     <Container>
       <ContentWrapper>
         <ContentContainer>
           <Header
+            quantity={elementsSelected.length}//
             title={title}
             subtitle={subtitle}
             onButtonClick={toggleContentVisibility}

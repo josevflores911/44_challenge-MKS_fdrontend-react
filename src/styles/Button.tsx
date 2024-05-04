@@ -4,11 +4,9 @@ import { Product } from "../interfaces/Product";
 
 
 interface ButtonProps {
-  
   onButtonClick?: ((item?: any) => void)|undefined;
   item?: Product;
   children: React.ReactNode;
-  
   type?: string;
   size?: number;
 }
@@ -16,7 +14,6 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ onButtonClick, item, children, type, size }) => {
   const handleClick = () => {
     if (onButtonClick) {
-      // Call onButtonClick with the item when button is clicked
       onButtonClick(item);
     }
   };
