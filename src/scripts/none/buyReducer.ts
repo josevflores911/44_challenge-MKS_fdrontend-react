@@ -1,4 +1,4 @@
-import { ActionTypes, Product } from "../interfaces/Product";
+import { ActionTypes, Product } from "../../interfaces/Product";
 
 
 const initialState: Product[] = [];

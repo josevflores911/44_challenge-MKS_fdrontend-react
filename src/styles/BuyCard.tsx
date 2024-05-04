@@ -13,7 +13,7 @@ interface CardProps {
 }
 
 
-const BuyCard: React.FC<CardProps> = ({ item, onButtonClick }) => {
+const BuyCard: React.FC<CardProps> = ({ item, onButtonClick,children }) => {
 
   const handleClick = () => {
     if (onButtonClick) {
@@ -22,20 +22,7 @@ const BuyCard: React.FC<CardProps> = ({ item, onButtonClick }) => {
   };
 
 
-  const [quantity, setQuantity] = useState(1);
-
-  const aumentar = () => {
-    const actualValue = quantity;
-    setQuantity(actualValue + 1);
-  };
-  const diminuir = () => {
-    const actualValue = quantity;
-    if (actualValue > 1) {
-      setQuantity(actualValue - 1);
-    } else if (actualValue == 0) {
-      //remove
-    }
-  };
+ 
 
   return (
     <CardContainer>
@@ -44,20 +31,8 @@ const BuyCard: React.FC<CardProps> = ({ item, onButtonClick }) => {
         <Image src={item.photo} alt={item.description} size={50} />
         <div> {item.brand}</div>
         
+        {children}
         
-        {/*create particular button*/}
-        <div style={{display:'flex',flexDirection:'column'}}>
-          <Smallfont>qtd</Smallfont>
-          <div style={{ display: "flex", height: "30px" }}>
-            <button type="button" onClick={diminuir}>
-              -
-            </button>
-            <div>{quantity}</div>
-            <button type="button" onClick={aumentar}>
-              +
-            </button>
-          </div>
-        </div>
 
         <CardContent>{formatCurrency(item.price)}</CardContent>
       </CardWrapper>
@@ -99,15 +74,7 @@ const Image = styled.img<{ size?: number }>`
   height: ${(props) => (props.size ? `${props.size}px` : "130px")};
 `;
 
-const Smallfont = styled.span`
-font-family: Montserrat;
-font-size: 8px;
-font-weight: 400;
-line-height: 6.1px;
-text-align: left;
-margin-bottom:3px;
 
-`;
 
 
 const CardContent = styled.p`

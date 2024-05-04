@@ -6,7 +6,8 @@ export interface Product {
     photo: string;
     price: string;
     createdAt: string;
-    updatedAt: string;
+  updatedAt: string;
+  quantity: number;
 }
   
 export const ActionTypes = {

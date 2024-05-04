@@ -37,7 +37,10 @@ const Main = () => {
             },
           }
         );
-        setProducts(response.data.products);
+
+        const p: Product[] = response.data.products.map((product) => ({ ...product, quantity: 1 }));
+        
+        setProducts(p);
       } catch (error) {
         console.error("Error fetching products:", error);
       }

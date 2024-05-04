@@ -21,10 +21,20 @@ const buySlice = createSlice({
         },
         removeItem: (state, action) => {
             state.values = state.values.filter((value) => value.id !== action.payload.id); 
+        },
+        addOneItem: (state, action) => {
+            state.values =state.values.map((el) =>
+                el.id === action.payload.id ? { ...el, quantity: el.quantity + 1 } : el
+              );
+        },
+        removeOneItem:(state, action) => {
+            state.values =state.values.map((el) =>
+                el.id === action.payload.id && el.quantity > 1 ? { ...el, quantity: el.quantity - 1 } : el
+              );
         }
     }
 })
 
-export const {addItem,removeItem} = buySlice.actions
+export const {addItem,removeItem,addOneItem,removeOneItem} = buySlice.actions
 
 export default buySlice.reducer

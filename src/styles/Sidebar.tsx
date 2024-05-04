@@ -4,18 +4,19 @@ import Button from "./Button";
 import BuyCard from "./BuyCard";
 import Font from "./Font";
 import { Product } from "../interfaces/Product";
-import { removeItem } from "../scripts/buySlice";
+import { removeItem,addOneItem,removeOneItem } from "../scripts/buySlice";
 import { useDispatch } from "react-redux";
+import AlterButton from "./AlterButton";
 
 interface SidebarProps {
   elementsSelected:Product[]
   display?: boolean;
   handleSidebar?: () => void;
-  children?: React.ReactNode;
+
 }
 
 
-const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar, children,elementsSelected }) => {
+const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar, elementsSelected }) => {
 
   const dispatch = useDispatch();
 
@@ -25,6 +26,14 @@ const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar, children,elem
     
   };
 
+
+  function aumentar(item: Product) {
+    dispatch(addOneItem(item))
+  }
+
+  function diminuir(item: Product) {
+    dispatch(removeOneItem(item))
+  }
 
   return (
 
@@ -40,13 +49,16 @@ const Sidebar: React.FC<SidebarProps> = ({ display, handleSidebar, children,elem
         <div>
           {elementsSelected && elementsSelected.map((element) => (
             <BuyCard key={element.id} item={element} onButtonClick={removeElement}>
-              {children}
+              
+              <AlterButton quantity={element.quantity} increaseQuantity={aumentar} decreaseQuantity={diminuir} item={element}/>
+
             </BuyCard>
-          ))}
+          ))
+          }
         </div>
 
         <Font>
-          Total: {'sum of all items'}
+          Total: {elementsSelected && elementsSelected.reduce((sum, el) => { return sum + ( parseInt(el.price)* el.quantity); }  ,0)  }
         </Font>
       </div>
 
@@ -90,7 +102,15 @@ const SidebarContainer = styled.div<{ $display?: boolean }>`
     `}
 `;
 
+const Smallfont = styled.span`
+font-family: Montserrat;
+font-size: 8px;
+font-weight: 400;
+line-height: 6.1px;
+text-align: left;
+margin-bottom:3px;
 
+`;
 
 
 const elements = [{
