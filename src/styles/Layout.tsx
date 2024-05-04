@@ -4,28 +4,23 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { Product } from "../interfaces/Product";
 
-
-
-
 interface LayoutProps {
- 
-    title?: string;
-    subtitle?: string;
-    text: string;
-    toggleContentVisibility: () => void;
+  title?: string;
+  subtitle?: string;
+  text: string;
+  toggleContentVisibility: () => void;
   children?: React.ReactNode;
-  elementsSelected:Product[]
-  }
+  elementsSelected: Product[];
+}
 
-
-const Layout: React.FC<LayoutProps> = ({ title,subtitle,children,toggleContentVisibility,text,elementsSelected}) => {
-
+const Layout: React.FC<LayoutProps> = ({ title, subtitle, children, toggleContentVisibility, text, elementsSelected, }) => {
+  
   return (
     <Container>
       <ContentWrapper>
         <ContentContainer>
           <Header
-            quantity={elementsSelected.length}//
+            quantity={elementsSelected.reduce(((sum,items)=>{return (sum + items.quantity)}),0)} //
             title={title}
             subtitle={subtitle}
             onButtonClick={toggleContentVisibility}
@@ -39,7 +34,6 @@ const Layout: React.FC<LayoutProps> = ({ title,subtitle,children,toggleContentVi
 };
 
 export default Layout;
-
 
 const Container = styled.div`
   display: flex;
