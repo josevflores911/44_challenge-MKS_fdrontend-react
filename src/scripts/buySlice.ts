@@ -13,8 +13,11 @@ const buySlice = createSlice({
     name: "action",
     initialState,
     reducers: {
-        addItem: (state,action) =>{
-            state.values.push(action.payload)
+        addItem: (state, action) => {
+            
+             if (!state.values.some((value)=>value.id ==action.payload.id)) {
+                state.values.push(action.payload)  
+             } 
         },
         removeItem: (state, action) => {
             state.values = state.values.filter((value) => value.id !== action.payload.id); 
