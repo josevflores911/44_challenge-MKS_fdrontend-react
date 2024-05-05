@@ -1,6 +1,6 @@
 import React from "react";
-import Main from "./container/Main";
-import {store} from "./scripts/store";
+import Main from "./components/container/Main";
+import {store} from "./reduces/store";
 import { Provider } from 'react-redux';
 
 function App() {

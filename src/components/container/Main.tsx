@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import MainContainer from './MainContainer';
-import Card from '../styles/Card';
-import { Product } from '../interfaces/Product';
+import Card from './Card';
+import { Product } from '../../interfaces/Product';
 
 import axios, { AxiosResponse } from "axios";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../scripts/store';
-import {addItem} from '../scripts/buySlice'
+import { RootState } from '../../reduces/store';
+import {addItem} from '../../reduces/buySlice'
 
 const API_URL = "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products";
 

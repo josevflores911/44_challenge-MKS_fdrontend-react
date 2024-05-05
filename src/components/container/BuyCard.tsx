@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Button from "./Button";
-import { GiShoppingBag } from "react-icons/gi";
-import { formatCurrency } from "../utils/utils";
-import { Product } from "../interfaces/Product";
+import Button from "../../UI/Button";
+import { formatCurrency } from "../../utils/utils";
+import { Product } from "../../interfaces/Product";
+import Flex from "../../UI/Flex";
 
 
 interface CardProps {
@@ -21,34 +21,25 @@ const BuyCard: React.FC<CardProps> = ({ item, onButtonClick,children }) => {
     }
   };
 
-
- 
-
   return (
     <CardContainer>
-
-      <CardWrapper >
+      <Flex $alignitems="center" $justifycontent="space-between" $width="100%">
         <Image src={item.photo} alt={item.description} size={50} />
-        <div> {item.brand}</div>
-        
+        {item.brand}
         {children}
-        
-
         <CardContent>{formatCurrency(item.price)}</CardContent>
-      </CardWrapper>
+      </Flex>
 
       <div style={{ position: "absolute", top: "-15px", right: "-15px" }}>
-        <Button type="close" onButtonClick={handleClick} size={20}>
+        <Button type="close" onButtonClick={handleClick} width={25}>
           X
         </Button>
       </div>
-    
-  </CardContainer>
+    </CardContainer>
   );
 };
 
 export default BuyCard;
-
 
 
 const CardContainer = styled.div`
@@ -62,20 +53,11 @@ padding: 10px;
 position: relative;
 `;
 
-const CardWrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-around;
-width: 100%;
-`;
 
 const Image = styled.img<{ size?: number }>`
   width: ${(props) => (props.size ? `${props.size}px` : "130px")};
   height: ${(props) => (props.size ? `${props.size}px` : "130px")};
 `;
-
-
-
 
 const CardContent = styled.p`
   display: flex;

@@ -8,10 +8,10 @@ interface ButtonProps {
   item?: Product;
   children: React.ReactNode;
   type?: string;
-  size?: number;
+  width?: number;
 }
 
-const Button: React.FC<ButtonProps> = ({ onButtonClick, item, children, type, size }) => {
+const Button: React.FC<ButtonProps> = ({ onButtonClick, item, children, type, width }) => {
   const handleClick = () => {
     if (onButtonClick) {
       onButtonClick(item);
@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({ onButtonClick, item, children, type, si
   };
   
   return (
-    <StyledButton onClick={handleClick}  type={type} size={size}>
+    <StyledButton onClick={handleClick}  type={type} width={width}>
       {children}
     </StyledButton>
   );
@@ -39,8 +39,8 @@ const StyledButton = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: ${(props) => (props.size ? `${props.size}px` : "auto")};
-  width: ${(props) => (props.size ? `${props.size}px` : "100%")};
+  height: ${(props) => (props.width ? `${props.width}px` : "auto")};
+  width: ${(props) => (props.width ? `${props.width}px` : "100%")};
   
 
   &:hover {
@@ -55,7 +55,7 @@ const StyledButton = styled.button<ButtonProps>`
       color: black;
       font-weight: 700;
       height: 45px;
-      width: 90px;
+      
     `}
 
   ${(props) =>

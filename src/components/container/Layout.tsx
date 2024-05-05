@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Product } from "../interfaces/Product";
+import { Product } from "../../interfaces/Product";
+import Button from "../../UI/Button";
+import { RiShoppingCartFill } from "react-icons/ri";
 
 interface LayoutProps {
   title?: string;
@@ -18,15 +20,21 @@ const Layout: React.FC<LayoutProps> = ({ title, subtitle, children, toggleConten
   return (
     <Container>
       <ContentWrapper>
+       
         <ContentContainer>
+          
           <Header
-            quantity={elementsSelected.reduce(((sum,items)=>{return (sum + items.quantity)}),0)} //
             title={title}
             subtitle={subtitle}
-            onButtonClick={toggleContentVisibility}
-          />
+          >
+            <Button onButtonClick={toggleContentVisibility} type='header' width={150}><RiShoppingCartFill />
+              {elementsSelected.reduce(((sum, items) => { return (sum + items.quantity) }), 0)}
+            </Button>
+        </Header>
+
           <Content>{children}</Content>
         </ContentContainer>
+       
         <Footer text={text} />
       </ContentWrapper>
     </Container>
@@ -46,7 +54,7 @@ const ContentWrapper = styled.div`
   display: flex;
   overflow: hidden;
   flex-wrap: wrap;
-  background-color: yellow;
+  background-color: white;
   align-content: space-between;
   height: 100%;
 `;
