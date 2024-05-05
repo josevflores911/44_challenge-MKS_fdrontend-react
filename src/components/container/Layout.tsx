@@ -67,7 +67,7 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
-background-color:yellow;
+
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
