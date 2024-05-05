@@ -39,8 +39,7 @@ const MainContainer: React.FC<ParentComponentProps> = ({ children,elementsSelect
   return (
   <div>
     {displayContent?<SideBar elementsSelected={elementsSelected} handleSidebar={toggleContentVisibility}/>:<SideBar elementsSelected={elementsSelected} handleSidebar={toggleContentVisibility} display/> }
-    <div className="parent-component" style={{ display: "flex", overflow: "hidden",height:"100vh" ,transition: 'width 0.5s ease',width: displayContent?"100%" :"calc(100% - 486px)"}}>
-      <Layout elementsSelected={elementsSelected} toggleContentVisibility={toggleContentVisibility} title={title} subtitle={subtitle} text={text}>
+    <div className="parent-component" style={{ display: "flex", overflow: "hidden",height:"100vh" ,transition: 'width 0.5s ease',width: displayContent?"100%" :"calc(100% - 486px)"} }>      <Layout elementsSelected={elementsSelected} toggleContentVisibility={toggleContentVisibility} title={title} subtitle={subtitle} text={text}>
         {children}
       </Layout>
     </div>
