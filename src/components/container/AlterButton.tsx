@@ -6,14 +6,16 @@ import Flex from "../../UI/Flex";
 
 interface AlterButtonProps {
   quantity: number;
-  decreaseQuantity?: (item: Product) => void;
-  increaseQuantity?: (item: Product) => void;
-  item: Product;
+  decreaseQuantity?: (item?: Product) => void;
+  increaseQuantity?: (item?: Product) => void;
+  item?: Product;
+  text?: string;
 }
 
 
 
-const AlterButton:React.FC<AlterButtonProps> = ({ quantity, decreaseQuantity, increaseQuantity,item }) => {
+const AlterButton: React.FC<AlterButtonProps> = ({ quantity, decreaseQuantity, increaseQuantity, item, text }) => {
+
   const add = () => {
     if (increaseQuantity) {
       increaseQuantity(item);
@@ -25,15 +27,17 @@ const AlterButton:React.FC<AlterButtonProps> = ({ quantity, decreaseQuantity, in
       decreaseQuantity(item);
     }
   };
+
+
   return (
     <Flex $direction={'column'}>
-      <SmallFont>qtd</SmallFont>
+      <SmallFont>{text}</SmallFont>
       <QuantityContainer>
-        <Button type="button" onClick={remove} $left>
+        <Button type="button" onClick={remove}  $left>
           -
         </Button>
         <QuantityBorder>{quantity}</QuantityBorder>
-        <Button type="button" onClick={add} $right>
+        <Button type="button" onClick={add}  $right>
           +
         </Button>
       </QuantityContainer>
@@ -63,7 +67,7 @@ const QuantityContainer = styled.div`
   border-color: #ff0000 #00ff00 #0000ff rgb(250,0,255);
 `;
 
-const Button = styled.button<{ $left?: boolean;$right?: boolean; }>`
+const Button = styled.button<{ $left?: boolean; $right?: boolean; $handlenext?: () => void; $handleprevious?:()=>void }>`
   padding: 5px 10px;
   font-size: 16px;
   cursor: pointer;

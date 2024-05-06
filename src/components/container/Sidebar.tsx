@@ -28,11 +28,11 @@ const Sidebar: React.FC<SidebarProps> = ({
     console.log(elementsSelected);
   };
 
-  function aumentar(item: Product) {
+  function aumentar(item?: Product) {
     dispatch(addOneItem(item));
   }
 
-  function diminuir(item: Product) {
+  function diminuir(item?: Product) {
     dispatch(removeOneItem(item));
   }
 
@@ -66,6 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     increaseQuantity={aumentar}
                     decreaseQuantity={diminuir}
                     item={element}
+                    text={'qtd'}
                   />
                 </BuyCard>
               ))}

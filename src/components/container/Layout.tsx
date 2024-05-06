@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { Product } from "../../interfaces/Product";
 import Button from "../../UI/Button";
 import { RiShoppingCartFill } from "react-icons/ri";
+import AlterButton from "./AlterButton";
 
 interface LayoutProps {
   title?: string;
@@ -13,9 +14,10 @@ interface LayoutProps {
   toggleContentVisibility: () => void;
   children?: React.ReactNode;
   elementsSelected: Product[];
+  $displayContent: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, subtitle, children, toggleContentVisibility, text, elementsSelected, }) => {
+const Layout: React.FC<LayoutProps> = ({ title, subtitle, children, toggleContentVisibility, text, elementsSelected,$displayContent }) => {
   
   return (
     <Container>
@@ -23,19 +25,21 @@ const Layout: React.FC<LayoutProps> = ({ title, subtitle, children, toggleConten
        
         <ContentContainer>
           
-          <Header
-            title={title}
-            subtitle={subtitle}
-          >
+          <Header title={title} subtitle={subtitle}          >
             <Button onButtonClick={toggleContentVisibility} type='header' width={150}><RiShoppingCartFill />
               {elementsSelected.reduce(((sum, items) => { return (sum + items.quantity) }), 0)}
             </Button>
         </Header>
 
-          <Content>{children}</Content>
+        
+            
+        <Content>{children}</Content>
+         
+          
+         
         </ContentContainer>
        
-        <Footer text={text} />
+        <Footer text={text} $displayContent={$displayContent } />
       </ContentWrapper>
     </Container>
   );
@@ -44,7 +48,6 @@ const Layout: React.FC<LayoutProps> = ({ title, subtitle, children, toggleConten
 export default Layout;
 
 const Container = styled.div`
-
   display: flex;
   overflow: hidden;
   flex-direction: column;
@@ -55,7 +58,7 @@ const ContentWrapper = styled.div`
   display: flex;
   overflow: hidden;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: white;//red
   align-content: space-between;
   height: 100%;
 `;
@@ -63,12 +66,15 @@ const ContentWrapper = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   overflow: hidden;
+  justify-content:center;
+  
   flex-wrap: wrap;
 `;
 
 const Content = styled.div`
 
   display: flex;
+  align-items:center;
   flex-wrap: wrap;
   width: 100vw;
   padding: 50px;
