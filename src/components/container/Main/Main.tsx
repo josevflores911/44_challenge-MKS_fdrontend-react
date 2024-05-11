@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
-import MainContainer from './MainContainer';
-import Card from './Card';
-import { Product } from '../../interfaces/Product';
+import MainContainer from '../MainContainer/MainContainer';
+import Card from '../Card/Card';
+import { Product } from '../../../interfaces/Product';
 
 import axios, { AxiosResponse } from "axios";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../reduces/store';
-import {addItem} from '../../reduces/buySlice'
-import AlterButton from './AlterButton';
-import Flex from '../../UI/Flex';
+import { RootState } from '../../../reduces/store';
+import {addItem} from '../../../reduces/buySlice'
+import AlterButton from '../AlterButton/AlterButton';
+import Flex from '../../../UI/Flex';
 import { useQuery } from 'react-query';
+import Margin from '../../../UI/Margin';
+import Padding from '../../../UI/Padding';
 
 const API_URL = "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products";
 
@@ -56,8 +58,11 @@ const Main = () => {
   return (
     <MainContainer elementsSelected={elementsSelected}>
       <Flex $direction="column" $alignitems="center">
-         <Flex>
+        <Flex>
+          
+
           <AlterButton quantity={page} text={"page"} />
+          
         </Flex> 
 
         <Flex $wrap="wrap">
@@ -71,6 +76,87 @@ const Main = () => {
 };
 
 export default Main;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

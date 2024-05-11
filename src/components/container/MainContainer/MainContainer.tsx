@@ -1,10 +1,10 @@
 import React, { ReactNode, useState } from "react";
 
-import { PRODUCTS } from "../../data/products";
+import { PRODUCTS } from "../../../data/products";
 
-import SideBar from "./Sidebar";
-import Layout from "./Layout";
-import { Product } from "../../interfaces/Product";
+import SideBar from "../Sidebar/Sidebar";
+import Layout from "../Layout/Layout";
+import { Product } from "../../../interfaces/Product";
 
 
 //todo
@@ -15,7 +15,10 @@ import { Product } from "../../interfaces/Product";
 //container, cargar productos, aplicar axios, aplicar reactquery,por ultimo jest
 
 //04-05
-//jest, react-query, heroku, clean code(Margin<FLex), framer-motion
+//jest, react-query, heroku-vercel, clean code(Margin<FLex), framer-motion
+
+//05-05  missing
+//use margin tag inside flex tag and pass props, use framer motion, pass to angular, another option to vercel, pagination, jest, move to next
 
 type ParentComponentProps = {
   children: ReactNode;
