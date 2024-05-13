@@ -2,6 +2,7 @@ import React from "react";
 import * as Styles from "./styles";
 import { Product } from "../../../interfaces/Product";
 import Flex from "../../../UI/Flex";
+import Font from "../../../UI/Font";
 
 
 interface AlterButtonProps {
@@ -30,7 +31,7 @@ const AlterButton: React.FC<AlterButtonProps> = ({ quantity, decreaseQuantity, i
 
   return (
     <Flex $direction={'column'}>
-      <Styles.SmallFont>{text}</Styles.SmallFont>
+      <Font size="12" height="15" weight="500">{text}</Font>
       <Styles.QuantityContainer>
         <Styles.Button type="button" onClick={remove}  $left>
           -

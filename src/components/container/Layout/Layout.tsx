@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Styles from './styles'
 import Header from "../Header";
 import Footer from "../Footer";
 import { Product } from "../../../interfaces/Product";
 import Button from "../../../UI/Button";
 import { RiShoppingCartFill } from "react-icons/ri";
-import AlterButton from "../AlterButton/AlterButton";
+
 
 interface LayoutProps {
   title?: string;

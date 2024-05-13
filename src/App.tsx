@@ -18,8 +18,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 function App() {
   return (
     <div className="App" data-testid="app-component">
-      <QueryClientProvider client={new QueryClient}>
-
+      <QueryClientProvider client={new QueryClient()}>
       <Provider store={store}>
         <Main />
       </Provider>

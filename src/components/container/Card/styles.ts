@@ -5,28 +5,30 @@ export const CardContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
   max-width: 218px;
   min-width: 218px;
-  margin: 20px;
   max-height: 285px;
   min-height: 285px;
+
+
+  margin: 20px;
 `;
 
-export const CardTitle = styled.h3`
-  font-size: 18px;
-  margin-bottom: 0;
-`;
 
 export const CardContent = styled.p`
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 align-items:center;
+
 width: 64px;
 height: 26px;
+
 border-radius: 5px;
 opacity: 0px;
 background-color: #373737;
+
 font-family: Montserrat;
 font-size: 10px;
 font-weight: 700;

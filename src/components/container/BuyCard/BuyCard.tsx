@@ -4,6 +4,7 @@ import Button from "../../../UI/Button";
 import { formatCurrency } from "../../../utils/utils";
 import { Product } from "../../../interfaces/Product";
 import Flex from "../../../UI/Flex";
+import Padding from "../../../UI/Padding";
 
 
 interface CardProps {
@@ -23,6 +24,8 @@ const BuyCard: React.FC<CardProps> = ({ item, onButtonClick,children }) => {
 
   return (
     <Styles.CardContainer>
+      
+
       <Flex $alignitems="center" $justifycontent="space-between" $width="100%">
         <Styles.Image src={item.photo} alt={item.description} size={50} />
         {item.brand}
@@ -35,6 +38,7 @@ const BuyCard: React.FC<CardProps> = ({ item, onButtonClick,children }) => {
           X
         </Button>
       </div>
+      
     </Styles.CardContainer>
   );
 };

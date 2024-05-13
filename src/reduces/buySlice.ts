@@ -15,7 +15,7 @@ const buySlice = createSlice({
     reducers: {
         addItem: (state, action) => {
             
-             if (!state.values.some((value)=>value.id ==action.payload.id)) {
+             if (!state.values.some((value)=>value.id ===action.payload.id)) {
                 state.values.push(action.payload)  
              } 
         },

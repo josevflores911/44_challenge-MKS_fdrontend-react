@@ -6,8 +6,8 @@ padding-left:${(props) => (props.left ? `${props.left}px` : "auto")};;
 padding-rigth:${(props) => (props.right ? `${props.right}px` : "auto")};;
 padding-top:${(props) => (props.top ? `${props.top}px` : "auto")};;
 padding-down:${(props) => (props.down ? `${props.down}px` : "auto")};;
-padding:${(props) => (props.$algo ? `${props.$algo}px` : "auto")};;
-background-color:yellow;
+padding:${(props) => (props.$padding ? `${props.$padding}px` : "auto")};;
+
 `;
 
 interface PaddingProps {
@@ -15,13 +15,13 @@ interface PaddingProps {
     down?: string;
     left?: string;
     right?: string;
-    $algo?: string;
+    $padding?: string;
     children: React.ReactNode;
 }
   
-const Padding: React.FC<PaddingProps> = ({ children,top,down,left,right,$algo}) => {    
+const Padding: React.FC<PaddingProps> = ({ children,top,down,left,right,$padding}) => {    
     return (
-      <StyledPadding top={top} down={down} left={left} right={right} $algo={$algo}>
+      <StyledPadding top={top} down={down} left={left} right={right} $padding={$padding}>
         {children}
       </StyledPadding>
     );

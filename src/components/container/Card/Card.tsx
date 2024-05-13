@@ -5,6 +5,9 @@ import { GiShoppingBag } from "react-icons/gi";
 import { Product } from '../../../interfaces/Product';
 import { formatCurrency } from '../../../utils/utils';
 import Flex from '../../../UI/Flex';
+import Font from '../../../UI/Font';
+import Margin from '../../../UI/Margin';
+import Padding from '../../../UI/Padding';
 
 interface CardProps {
   item: Product;
@@ -16,14 +19,23 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ item, onButtonClick }) => {
   return (
     <Styles.CardContainer>
+
+        
       <Styles.CardContentWrapper>
         <Flex $justifycontent={"center"}>
           <Styles.Image src={item.photo} alt={item.description} />
         </Flex>
 
         <Flex $justifycontent="space-between">
-          <Styles.CardTitle>{item.name}</Styles.CardTitle>
-          <Styles.CardContent>{formatCurrency(item.price)}</Styles.CardContent>
+          <Font size='18' height='25'>
+            <Margin $down='0'>
+            {item.name}
+            </Margin>
+          </Font>
+          
+          <Styles.CardContent>
+              {formatCurrency(item.price)}
+          </Styles.CardContent>
         </Flex>
 
         {item.brand}
@@ -35,6 +47,7 @@ const Card: React.FC<CardProps> = ({ item, onButtonClick }) => {
           {`COMPRAR`}
         </Button>
       </Styles.ButtonContainer>
+
     </Styles.CardContainer>
   );
 };

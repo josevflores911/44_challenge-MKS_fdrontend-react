@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import MainContainer from '../MainContainer/MainContainer';
 import Card from '../Card/Card';
 import { Product } from '../../../interfaces/Product';
-
 import axios, { AxiosResponse } from "axios";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../reduces/store';
 import {addItem} from '../../../reduces/buySlice'
 import AlterButton from '../AlterButton/AlterButton';
 import Flex from '../../../UI/Flex';
 import { useQuery } from 'react-query';
-import Margin from '../../../UI/Margin';
-import Padding from '../../../UI/Padding';
+
 
 const API_URL = "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products";
 
@@ -51,7 +48,7 @@ const Main = () => {
     return <p>Loading...</p>; 
   }
 
-  if (isError) {
+  if(isError || !products) {
     return <p>Error: {/*error?.message*/}</p>; 
   }
 
@@ -65,7 +62,7 @@ const Main = () => {
           
         </Flex> 
 
-        <Flex $wrap="wrap">
+        <Flex $wrap="wrap" data-testid="list">
           {products.map((item) => (
             <Card key={item.id} item={item} onButtonClick={handleAddItem} />
           ))}

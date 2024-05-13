@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <Flex $justifycontent="space-between">
             <Font width={"300"}>
               <Margin $margin="20">
-                <Padding $algo="20">Carrinho de compras</Padding>
+                Carrinho de compras
               </Margin>
         
             </Font>

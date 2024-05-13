@@ -2,13 +2,16 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
 display: flex;
-background-color: white;
 align-items: center;
-color:black;
-margin-bottom: 20px;
-border-radius: 10px;
+
 padding: 10px;
+
+margin-bottom: 20px;
+
+background-color: white;
+border-radius: 10px;
 position: relative;
+color:black;
 `;
 
 
@@ -24,8 +27,11 @@ export const CardContent = styled.p`
   align-items: center;
   width: 64px;
   height: 26px;
+
   border-radius: 5px;
   opacity: 0px;
+
+
   font-family: Montserrat;
   font-size: 15px;
   font-weight: 700;
