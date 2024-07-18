@@ -24,6 +24,8 @@ const Main = () => {
     console.log(elementsSelected);
   };
 
+
+
   const { data: products = [], isLoading, isError, error } = useQuery<Product[]>(
     'products', // Query key (identifier for the query)
     async () => {
@@ -44,14 +46,17 @@ const Main = () => {
     }
   );
 
-  if (isLoading) {
-    return <p>Loading...</p>; 
-  }
 
-  if(isError || !products) {
-    return <p>Error: {/*error?.message*/}</p>; 
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>; 
+  // }
 
+  // if(isError || !products) {
+  //   return <p>Error: {/*error?.message*/}</p>; 
+  // }
+
+  
+  
   return (
     <MainContainer elementsSelected={elementsSelected}>
       <Flex $direction="column" $alignitems="center">
@@ -63,9 +68,9 @@ const Main = () => {
         </Flex> 
 
         <Flex $wrap="wrap" data-testid="list">
-          {products.map((item) => (
+          {products && (products.length>0) ? products.map((item) => (
             <Card key={item.id} item={item} onButtonClick={handleAddItem} />
-          ))}
+          )) :<div>hola</div> }
         </Flex>
       </Flex>
     </MainContainer>
