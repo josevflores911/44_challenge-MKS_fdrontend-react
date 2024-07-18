@@ -70,7 +70,7 @@ const Main = () => {
         <Flex $wrap="wrap" data-testid="list">
           {products && (products.length>0) ? products.map((item) => (
             <Card key={item.id} item={item} onButtonClick={handleAddItem} />
-          )) :<div>hola</div> }
+          )) :<div>hola the back end is down need to be created for products, can you help me?</div> }
         </Flex>
       </Flex>
     </MainContainer>
