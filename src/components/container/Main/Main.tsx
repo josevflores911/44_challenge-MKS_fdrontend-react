@@ -51,6 +51,7 @@ const Main = () => {
   //   return <p>Loading...</p>; 
   // }
 
+  
   // if(isError || !products) {
   //   return <p>Error: {/*error?.message*/}</p>; 
   // }
